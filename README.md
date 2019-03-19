@@ -22,13 +22,13 @@ Presentation on writing R packages
   - use_test()
 - Advanced Setup
   - `use_*_license()`
-  - `use_readme_rmd()`
+  - `use_news_md()`
+  - `use_spell_check()`
   - `use_travis()`
   - `use_appveyor()`
   - `use_coverage()`
-  - `use_news_md()`
-  - `use_spell_check()`
 - Advanced Documentation
+  - `use_readme_rmd()`
   - `use_vignette()`
   - Roxygen2 comments
     - @importFrom
