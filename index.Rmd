@@ -1,0 +1,44 @@
+---
+title: "Writing R Packages"
+author: "Daniel D. Sjoberg<br/><br/>Memorial Sloan Kettering Cancer Center<br/>Department of Epidemiology and Biostatistics"
+date: "March 28, 2019"
+output:
+  xaringan::moon_reader:
+    css: [ninjutsu, default, default-fonts, "my-theme.css"]
+    lib_dir: libs
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(tidyverse)
+library(knitr)
+set.seed(78987)
+```
+
+background-image: url(images/purrr_hex.png)
+background-size: contain
+
+???
+Definitely one of the cuter, softer hex stickers from the tidyverse.
+
+Image credit: [Rstudio](www.rstudio.com)
+
+---
+class: inverse, center, middle
+# let's get started
+
+---
+# purrr package
+
+purrr enhances R’s functional programming toolkit (read: the apply family of functions) by providing a complete and consistent set of tools for working with functions and vectors
+
+best place to start is the family of `map()` functions which allow you to rep0lace many for loops* with code that is more succinct and easier to read
+
+`map()` functions transform their input by applying a function to each element and returning a vector the same length as the input
+
+.footnote[[*] And much much more]
