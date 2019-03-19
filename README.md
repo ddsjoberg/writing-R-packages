@@ -43,3 +43,9 @@ Presentation on writing R packages
 - Working with tidyverse functions
   - What is NSE?
   - What is rlang package?
+- Collaborating with GitHub
+  - Work from a dev branch, make it your default branch
+  - Protect master and dev branches
+    - can require review by another
+    - can require that travis CI builds without error
+  
