@@ -49,6 +49,7 @@ Presentation on writing R packages
     - can require review by another
     - can require that travis CI builds without error
   - add bug reports to DESCRIPTION
+- Create Package Website
   
   
   
