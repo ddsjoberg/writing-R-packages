@@ -48,4 +48,7 @@ Presentation on writing R packages
   - Protect master and dev branches
     - can require review by another
     - can require that travis CI builds without error
+  - add bug reports to DESCRIPTION
+  
+  
   
