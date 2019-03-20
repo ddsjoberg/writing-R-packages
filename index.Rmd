@@ -1,5 +1,6 @@
 ---
 title: "Writing R Packages"
+subtitle: "with Rstudio, usethis, and roxygen2"
 author: "Daniel D. Sjoberg<br/><br/>Memorial Sloan Kettering Cancer Center<br/>Department of Epidemiology and Biostatistics"
 date: "March 28, 2019"
 output:
@@ -20,25 +21,121 @@ library(knitr)
 set.seed(78987)
 ```
 
-background-image: url(images/purrr_hex.png)
-background-size: contain
-
-???
-Definitely one of the cuter, softer hex stickers from the tidyverse.
-
-Image credit: [Rstudio](www.rstudio.com)
-
----
-class: inverse, center, middle
-# let's get started
+class: center, middle
+<img src="images/RStudio-Logo-Flat.png" width = "75%">
+.pull-left[.center[
+<img src="images/usethis logo.png">
+]]
+.pull-right[.center[
+<img src="images/roxygen2 logo 3.png" width = "52%">
+]]
 
 ---
-# purrr package
+# Outline
+.xlarge[
+.pull-left[
+- R Package Structure
 
-purrr enhances R’s functional programming toolkit (read: the apply family of functions) by providing a complete and consistent set of tools for working with functions and vectors
+- Getting Started
 
-best place to start is the family of `map()` functions which allow you to rep0lace many for loops* with code that is more succinct and easier to read
+- Adding Functions
 
-`map()` functions transform their input by applying a function to each element and returning a vector the same length as the input
+- Build your Package
 
-.footnote[[*] And much much more]
+- Unit Tests
+
+- Advanced Setup
+]
+.pull-right[
+- Advanced Documentation
+
+- Include Datasets
+
+- Other Tips
+
+- Non-Standard Evaluation 
+
+- Collaborate with GitHub
+
+- Create Package Website
+]
+]
+
+---
+class: inverse
+# Outline
+.xlarge[
+.pull-left[
+- _**R Package Structure**_
+
+- Getting Started
+
+- Adding Functions
+
+- Build your Package
+
+- Unit Tests
+
+- Advanced Setup
+]
+.pull-right[
+- Advanced Documentation
+
+- Include Datasets
+
+- Other Tips
+
+- Non-Standard Evaluation 
+
+- Collaborate with GitHub
+
+- Create Package Website
+]
+]
+
+---
+# Package Structure
+
+.xlarge[.pull-left[
+An R package only needs 3 components
+
+
+<font color="grey">1. DESCRIPTION file</font>
+
+2. NAMESPACE file
+
+3. R code folder
+]]
+.pull-right[
+<img src="images/basic package structure.PNG">
+]
+
+---
+# Package Structure
+
+.xlarge[.pull-left[
+An R package only needs 3 components
+
+
+<font color="red">1. DESCRIPTION file</font>
+
+2. NAMESPACE file
+
+3. R code folder
+]]
+.pull-right[
+<img src="images/basic package structure.PNG">
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
