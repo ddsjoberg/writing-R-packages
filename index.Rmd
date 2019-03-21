@@ -587,3 +587,31 @@ my_mean <- function(x) {
 * **Check** 
   - runs many many check on your package
   - check your package often as you build
+  
+---
+# Adding Functions
+.pull-left[
+* new function calculates means of every column in a data frame
+
+* use the `map()` function in the purr package
+
+* we need to use `::` to refer to the `map()` function
+
+* we also need to document that our package now depends on purrr
+
+* `usethis::use_package("purrr")`
+
+```
+> usethis::use_package("purrr")
+✔ Setting active project to '~/myPackage'
+✔ Adding 'purrr' to Imports field in DESCRIPTION
+● Refer to functions with `purrr::fun()`
+```
+]
+.pull-right[
+```{r}
+df_mean <- function(data) {
+  purrr::map(data, ~mean(.x))
+}
+```
+]
