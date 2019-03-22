@@ -513,7 +513,7 @@ We will now use roxygen2 comments in our code to document our new function (aka 
 &gt; usethis::use_roxygen_md()
 ● Run the following code, then rerun `devtools::document()`
 Copying code to clipboard:
-  roxygen2md::roxygen2md("C:/Users/sjobergd/Desktop/To Delete/myPackage")
+  roxygen2md::roxygen2md("~/myPackage")
 ```
 
 ---
@@ -522,9 +522,9 @@ Copying code to clipboard:
 
 * roxygen comments appear above a function
 
-* the roxygen comment line always begins with `#'`
+* roxygen comment lines always begins with `#'`
 
-* two most notable roxygen tags
+* two common roxygen tags
   - `@param` used to document a function argument
   - `@export` tells roxygen to export the function when the package is built
 
@@ -538,7 +538,7 @@ Copying code to clipboard:
 #' @param x numeric vector
 #' @export
 my_mean &lt;- function(x) {
-  mean(na.omit(x))
+  mean(stats::na.omit(x))
 }
 ```
 
@@ -549,6 +549,7 @@ my_mean &lt;- function(x) {
   - `@seealso` list related references (typically used to reference related functions)
   - `@examples` add examples to function help file
   - `@author` list author(s) of the function
+  - `@return` specify the returned object 
 
 * link to other functions in help file
   - function in the same package `\code{\link{my_mean}}`
@@ -576,7 +577,7 @@ my_mean &lt;- function(x) {
 #' @examples
 #' my_mean(1:5)
 my_mean &lt;- function(x) {
-  mean(na.omit(x))
+  mean(stats::na.omit(x))
 }
 ```
 ]
@@ -597,11 +598,11 @@ my_mean &lt;- function(x) {
 ---
 # Adding Functions
 .pull-left[
-* new function calculates means of every column in a data frame
+* new function calculates mean of every column in a data frame
 
-* use the `map()` function in the purr package
+* use the `map()` function in the purrr package
 
-* we need to use `::` to refer to the `map()` function
+* we need to use `::` to refer to the `map()` function: `purrr::map()`
 
 * we also need to document that our package now depends on purrr
 
@@ -618,12 +619,380 @@ my_mean &lt;- function(x) {
 
 ```r
 df_mean &lt;- function(data) {
-  purrr::map(data, ~mean(.x))
+  purrr::map(
+    data, 
+    ~mean(stats::na.omit(.x))
+  )
 }
 ```
+
+&lt;hr&gt;
+`DESCRIPTION` (truncated)
+```
+...
+Imports: 
+    purrr
+...
+```
+]
+
+---
+class: inverse
+# Outline
+.xlarge[
+.pull-left[
+- R Package Structure
+
+- Getting Started
+
+- Adding Functions
+
+- _**Build your Package**_
+
+- Unit Tests
+
+- Advanced Setup
+]
+.pull-right[
+- Advanced Documentation
+
+- Include Datasets
+
+- Other Tips
+
+- Non-Standard Evaluation 
+
+- Collaborate with GitHub
+
+- Create Package Website
+]
+]
+
+---
+# Build your Package
+### Rstudio Build Tab
+&lt;img src="images/build tab.PNG"&gt;
+* **Document** each time you update roxygen comments
+* **Install and Restart** each time you update R code
+* **Check** 
+
+---
+# Build your Package
+
+What is checked?  
+
+--
+So much!  Here's a very abbreviated list
+.pull-left[
+* package structure
+  - hidden files/folders
+  - portable file names
+  - executable files
+  - package subdirectories
+  - left-over files
+
+* DESCRIPTION/NAMESPACE file    
+  - package dependencies
+  - files exist
+  - NAMESPACE parses properly
+]
+.pull-right[
+* R code
+  - non-ASCII characters
+  - syntax errors
+  - dependencies in R code
+  - S3 generic/method consistency
+  
+* documentation
+  - Rd/help files
+  - Rd file metadata
+  - examples
+  - undocumented function arguments
+]
+
+---
+class: inverse
+# Outline
+.xlarge[
+.pull-left[
+- R Package Structure
+
+- Getting Started
+
+- Adding Functions
+
+- Build your Package
+
+- _**Unit Tests**_
+
+- Advanced Setup
+]
+.pull-right[
+- Advanced Documentation
+
+- Include Datasets
+
+- Other Tips
+
+- Non-Standard Evaluation 
+
+- Collaborate with GitHub
+
+- Create Package Website
+]
+]
+
+---
+# Unit Tests
+
+* vital part of package development
+
+* helps ensure future updates don't break functioning code
+
+* easily implemented with the testthat package
+
+* all unit tests are run each time the package is checked
+
+--
+
+.pull-left[
+```
+&gt; usethis::use_testthat()
+✔ Setting active project to '~/myPackage'
+✔ Adding 'testthat' to 
+  Suggests field in DESCRIPTION
+✔ Creating 'tests/testthat/'
+✔ Writing 'tests/testthat.R'
+
+&gt; usethis::use_test("df_mean")
+✔ Writing 'tests/testthat/test-df_mean.R'
+● Modify 'tests/testthat/test-df_mean.R'
+```
+]
+.pull-right[
+**tests/testthat/test-df_mean.R**
+```
+context("test-df_mean")
+
+test_that("multiplication works", {
+  expect_equal(2 * 2, 4)
+})
+```
+]
+
+---
+# Unit Tests
+
+There are many types of checks that can be included
+.pull-left[
+* `expect_lte() `
+* `expect_gte()`
+* `expect_equal() `
+* `expect_setequal() `
+* `expect_equivalent() `
+* `expect_identical() `
+]
+.pull-right[
+* `expect_length()`
+* `expect_null()`
+* `expect_error() `
+* `expect_warning()`
+* `expect_true()`
+]
+
+Each test should have an informative name and cover a single unit of functionality. The idea is that when a test fails, you’ll know what’s wrong and where in your code to look for the problem.
+
+Hadley Wickham's book on writing R packages provides a thorough review on writing unit tests. http://r-pkgs.had.co.nz/tests.html
+
+---
+class: inverse
+# Outline
+.xlarge[
+.pull-left[
+- R Package Structure
+
+- Getting Started
+
+- Adding Functions
+
+- Build your Package
+
+- Unit Tests
+
+- _**Advanced Setup**_
+]
+.pull-right[
+- Advanced Documentation
+
+- Include Datasets
+
+- Other Tips
+
+- Non-Standard Evaluation 
+
+- Collaborate with GitHub
+
+- Create Package Website
+]
+]
+
+---
+# Advanced Setup
+.pull-left[
+- _**software license**_
+
+- `use_news_md()`
+
+- `use_spell_check()`
+
+- continuous integration
+
+- `use_coverage()`
+]
+.pull-right[
+Specify the license you want associated with your package.
+
+- `use_mit_license()`
+- `use_gpl3_license()`
+- `use_lgpl_license()`
+- `use_apl2_license()`
+- `use_cc0_license()`
+]
+
+---
+# Advanced Setup
+.pull-left[
+- software license
+
+- _**`use_news_md()`**_
+
+- `use_spell_check()`
+
+- continuous integration
+
+- `use_coverage()`
+]
+.pull-right[
+- creates a basic `NEWS.md` in the root directory
+
+- keep track of updates and versioning
+
+- communicate changes to API to users (also future you)
+]
+
+---
+# Advanced Setup
+.pull-left[
+- software license
+
+- `use_news_md()`
+
+- _**`use_spell_check()`**_
+
+- continuous integration
+
+- `use_coverage()`
+]
+.pull-right[
+- adds a unit test to automatically run a spell check on documentation and vignettes
+
+- adds a WORDLIST file to the package, which is a dictionary of whitelisted words
+
+- runs when the package checks are run
+
+- suggest including `error = TRUE` option so spelling errors fail package checks
+]
+
+---
+# Advanced Setup
+.pull-left[
+- software license
+
+- `use_news_md()`
+
+- `use_spell_check()`
+
+- _**continuous integration**_
+
+- `use_coverage()`
+]
+.pull-right[
+- get cool badges
+
+- others more confident in your package
+
+- `use_travis()` tests build on Linux
+
+- `use_appveyor()` test build on Windows
+
+- tests are trggered each time package is pushed to GitHub
+
+- blog post about using CI https://juliasilge.com/blog/beginners-guide-to-travis/
+
+- requires public GitHub repo
+
+&lt;img src="images/travis badge.svg"&gt;
+&lt;img src="images/appveyor badge.svg"&gt;
+]
+
+---
+# Advanced Setup
+.pull-left[
+- software license
+
+- `use_news_md()`
+
+- `use_spell_check()`
+
+- continuous integration
+
+- _**`use_coverage()`**_
+]
+.pull-right[
+- more cool badges
+
+- adds test coverage reports to a package that is already using Travis CI
+
+- reports the proportion of code covered by unit tests
+
+- provides reports of coverage of every file, line-by-line
+
+&lt;img src="images/codecov badge.svg"&gt;
+]
+&lt;img src="images/codecov figure.png" width = "30%"&gt;
+
+---
+class: inverse
+# Outline
+.xlarge[
+.pull-left[
+- R Package Structure
+
+- Getting Started
+
+- Adding Functions
+
+- Build your Package
+
+- Unit Tests
+
+- Advanced Setup
+]
+.pull-right[
+- _**Advanced Documentation**_
+
+- Include Datasets
+
+- Other Tips
+
+- Non-Standard Evaluation 
+
+- Collaborate with GitHub
+
+- Create Package Website
+]
 ]
     </textarea>
-<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "ratio": "16:9",
@@ -634,53 +1003,12 @@ df_mean &lt;- function(data) {
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
-(function(d) {
-  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
   if (!r) return;
   s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
   d.head.appendChild(s);
-})(document);
-
-(function(d) {
-  var el = d.getElementsByClassName("remark-slides-area");
-  if (!el) return;
-  var slide, slides = slideshow.getSlides(), els = el[0].children;
-  for (var i = 1; i < slides.length; i++) {
-    slide = slides[i];
-    if (slide.properties.continued === "true" || slide.properties.count === "false") {
-      els[i - 1].className += ' has-continuation';
-    }
-  }
-  var s = d.createElement("style");
-  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
-  d.head.appendChild(s);
-})(document);
-// delete the temporary CSS (for displaying all slides initially) when the user
-// starts to view slides
-(function() {
-  var deleted = false;
-  slideshow.on('beforeShowSlide', function(slide) {
-    if (deleted) return;
-    var sheets = document.styleSheets, node;
-    for (var i = 0; i < sheets.length; i++) {
-      node = sheets[i].ownerNode;
-      if (node.dataset["target"] !== "print-only") continue;
-      node.parentNode.removeChild(node);
-    }
-    deleted = true;
-  });
 })();</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 (function() {
