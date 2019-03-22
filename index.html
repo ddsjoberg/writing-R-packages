@@ -15,7 +15,7 @@
 class: center, middle, inverse, title-slide
 
 # Writing R Packages
-## with Rstudio, usethis, and roxygen2
+## with Rstudio, {usethis}, and {roxygen2}
 ### Daniel D. Sjoberg<br/><br/>Memorial Sloan Kettering Cancer Center<br/>Department of Epidemiology and Biostatistics
 ### March 28, 2019
 
@@ -166,7 +166,7 @@ importFrom(knitr,knit_print)
 importFrom(magrittr,"%&gt;%")
 ```
 
-* roxygen2 will take care of this for you!
+* {roxygen2} will take care of this for you!
 
 * lists functions that will be exported by your package
 
@@ -210,7 +210,14 @@ An R package needs 3 components
 3. R code folder
 ]]
 .large[.pull-right[
-The usethis package has functions that create the package structure for you
+The {usethis} package has functions that create the package structure for you
+
+After any function in {usethis} is run, it prints additional information into the console
+- lists file created
+- lists files modified
+- lists user instructions
+
+{usethis} makes package development a breeze
 ]]
 
 ---
@@ -489,11 +496,10 @@ my_mean &lt;- function(x) {
 }
 ```
 
-We will now use roxygen2 comments in our code to document our new function (aka write the help file)!
+We will now use {roxygen2} comments in our code to document our new function (aka write the help file)!
 
 ---
-# Adding Functions
-### Documentation
+# Adding Functions: Documentation
 
 * R function help files (\*.Rd) are saved in the *man* folder
 
@@ -503,7 +509,7 @@ We will now use roxygen2 comments in our code to document our new function (aka 
 
 * the code in \*.Rd files looks somewhat like LaTeX: it's verbose and cumbersome to write
 
-* we will automate the creation of these files with roxygen2 comments
+* we will automate the creation of these files with {roxygen2} comments
 
 * by automating, we link the function code to the documentation 
 
@@ -517,8 +523,7 @@ Copying code to clipboard:
 ```
 
 ---
-# Adding Functions
-### Documentation
+# Adding Functions: Documentation
 
 * roxygen comments appear above a function
 
@@ -543,8 +548,8 @@ my_mean &lt;- function(x) {
 ```
 
 ---
-# Adding Functions
-### Documentation
+# Adding Functions: Documentation
+
 * other notable roxygen tags
   - `@seealso` list related references (typically used to reference related functions)
   - `@examples` add examples to function help file
@@ -559,8 +564,8 @@ my_mean &lt;- function(x) {
   - http://kbroman.org/pkg_primer/pages/docs.html
 
 ---
-# Adding Functions
-### Documentation
+# Adding Functions: Documentation
+
 .pull-left[
 
 ```r
@@ -586,8 +591,8 @@ my_mean &lt;- function(x) {
 ]
 
 ---
-# Adding Functions
-### Rstudio Build Tab
+# Adding Functions: Rstudio Build Tab
+
 &lt;img src="images/build tab.PNG"&gt;
 * **Document** each time you update roxygen comments
 * **Install and Restart** each time you update R code
@@ -669,8 +674,8 @@ class: inverse
 ]
 
 ---
-# Build your Package
-### Rstudio Build Tab
+# Build your Package: Rstudio Build Tab
+
 &lt;img src="images/build tab.PNG"&gt;
 * **Document** each time you update roxygen comments
 * **Install and Restart** each time you update R code
@@ -857,6 +862,15 @@ Specify the license you want associated with your package.
 - `use_lgpl_license()`
 - `use_apl2_license()`
 - `use_cc0_license()`
+
+```
+&gt; usethis::use_mit_license("Daniel D. Sjoberg")
+✔ Setting License field in DESCRIPTION 
+     to 'MIT + file LICENSE'
+✔ Writing 'LICENSE.md'
+✔ Adding '^LICENSE\\.md$' to '.Rbuildignore'
+✔ Writing 'LICENSE'
+```
 ]
 
 ---
@@ -878,6 +892,12 @@ Specify the license you want associated with your package.
 - keep track of updates and versioning
 
 - communicate changes to API to users (also future you)
+
+```
+&gt; usethis::use_news_md()
+✔ Writing 'NEWS.md'
+● Modify 'NEWS.md'
+```
 ]
 
 ---
@@ -901,6 +921,12 @@ Specify the license you want associated with your package.
 - runs when the package checks are run
 
 - suggest including `error = TRUE` option so spelling errors fail package checks
+
+```
+&gt; usethis::use_spell_check(error = TRUE)
+Updated ~/myPackage/tests/spelling.R
+● Run `devtools::check()` to trigger spell check
+```
 ]
 
 ---
@@ -921,9 +947,9 @@ Specify the license you want associated with your package.
 
 - others more confident in your package
 
-- `use_travis()` tests build on Linux
+- `use_travis()` tests build on Linux: http://travis-ci.org
 
-- `use_appveyor()` test build on Windows
+- `use_appveyor()` test build on Windows: https://www.appveyor.com/
 
 - tests are trggered each time package is pushed to GitHub
 
@@ -933,6 +959,44 @@ Specify the license you want associated with your package.
 
 &lt;img src="images/travis badge.svg"&gt;
 &lt;img src="images/appveyor badge.svg"&gt;
+]
+
+---
+# Advanced Setup
+.pull-left[
+- software license
+
+- `use_news_md()`
+
+- `use_spell_check()`
+
+- _**continuous integration**_
+
+- `use_coverage()`
+]
+.pull-right[
+Be sure to follow all directions!
+```
+&gt; usethis::use_travis()
+✔ Writing '.travis.yml'
+✔ Adding '^\\.travis\\.yml$' to '.Rbuildignore'
+● Turn on travis for your repo at 
+    https://travis-ci.org/profile/ddsjoberg
+● Add a Travis build status badge by adding 
+    the following line to your README:
+Copying code to clipboard:
+  [![Travis build status](https://travis-ci.org/ddsjoberg/myPackage.svg?branch=master)](https://travis-ci.org/ddsjoberg/myPackage)
+  
+&gt; usethis::use_appveyor()
+✔ Writing 'appveyor.yml'
+✔ Adding '^appveyor\\.yml$' to '.Rbuildignore'
+● Turn on AppVeyor for this repo at 
+    https://ci.appveyor.com/projects/new
+● Add a AppVeyor build status badge by adding 
+    the following line to your README:
+Copying code to clipboard:
+  [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/ddsjoberg/myPackage?branch=master&amp;svg=true)](https://ci.appveyor.com/project/ddsjoberg/myPackage)
+```
 ]
 
 ---
@@ -957,9 +1021,42 @@ Specify the license you want associated with your package.
 
 - provides reports of coverage of every file, line-by-line
 
+- https://codecov.io/
+
 &lt;img src="images/codecov badge.svg"&gt;
 ]
 &lt;img src="images/codecov figure.png" width = "30%"&gt;
+
+---
+# Advanced Setup
+.pull-left[
+- software license
+
+- `use_news_md()`
+
+- `use_spell_check()`
+
+- continuous integration
+
+- _**`use_coverage()`**_
+]
+.pull-right[
+{usethis} prints directions into the console...be sure to follow them! 
+```
+&gt; usethis::use_coverage()
+✔ Adding 'covr' to Suggests field in DESCRIPTION
+✔ Writing 'codecov.yml'
+✔ Adding '^codecov\\.yml$' to '.Rbuildignore'
+● Add a Coverage status badge by adding the 
+    following line to your README:
+Copying code to clipboard:
+  [![Coverage status](https://codecov.io/gh/ddsjoberg/myPackage/branch/master/graph/badge.svg)](https://codecov.io/github/ddsjoberg/myPackage?branch=master)
+● Add to '.travis.yml':
+Copying code to clipboard:
+  after_success:
+    - Rscript -e 'covr::codecov()'
+```
+]
 
 ---
 class: inverse
@@ -992,7 +1089,674 @@ class: inverse
 - Create Package Website
 ]
 ]
+
+---
+# Advanced Documentation: README
+
+.pull-left[
+- GitHub renders the README file and is often the first thing users will see about your package
+
+- rather than use a basic README.md, use an R markdown README.rmd
+
+- `use_readme_rmd()`
+```
+&gt; usethis::use_readme_rmd()
+✔ Writing 'README.Rmd'
+✔ Adding '^README\\.Rmd$' to '.Rbuildignore'
+● Modify 'README.Rmd'
+✔ Writing '.git/hooks/pre-commit'
+```
+]
+.pull-right[
+- update and knit README.rmd, and it'll create README.md
+  - README.md now has this header:       
+  `&lt;!-- README.md is generated from README.Rmd. Please edit that file --&gt;`
+
+- be sure to knit README.rmd after you modify the file OR update functions highlighted in the README file
+]
+
+---
+# Advanced Documentation: Vignettes
+
+.pull-left[
+- a vignette is a long-form guide to your package
+
+- describes the problem your package is designed to solve, then shows the reader how to solve it
+
+```
+&gt; usethis::use_vignette("my first vignette")
+#&gt; ✔ Adding 'knitr' to Suggests field in DESCRIPTION
+#&gt; ✔ Setting VignetteBuilder field in 
+#&gt;     DESCRIPTION to 'knitr'
+#&gt; ✔ Adding 'rmarkdown' to Suggests field 
+#&gt;     in DESCRIPTION
+#&gt; ✔ Creating 'vignettes/'
+#&gt; ✔ Adding '*.html', '*.R' to 'vignettes/.gitignore'
+#&gt; ✔ Adding 'inst/doc' to '.gitignore'
+#&gt; ✔ Creating 'vignettes/my-first-vignette.Rmd'
+#&gt; ● Modify 'vignettes/my-first-vignette.Rmd'
+```
+]
+--
+.pull-right[
+- a vignette is an R markdown document with HTML output
+
+- be sure to change the title in BOTH `title:` and `VignetteIndexEntry{}` in the vignette yaml
+```
+title: "Vignette Title"
+author: "Vignette Author"
+date: "2019-03-22"
+output: rmarkdown::html_vignette
+vignette: &gt;
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+```
+
+- R packages, Vignettes Chapter: http://r-pkgs.had.co.nz/vignettes.html
+]
+
+---
+class: inverse
+# Outline
+.xlarge[
+.pull-left[
+- R Package Structure
+
+- Getting Started
+
+- Adding Functions
+
+- Build your Package
+
+- Unit Tests
+
+- Advanced Setup
+]
+.pull-right[
+- Advanced Documentation
+
+- _**Include Datasets**_
+
+- Other Tips
+
+- Non-Standard Evaluation 
+
+- Collaborate with GitHub
+
+- Create Package Website
+]
+]
+
+---
+# Include Datasets
+
+.pull-left[
+- including datasets in an R package is easy with `use_data_raw()` and `use_data()`
+
+- we'll go over an example where we simulate a dataset and save it in the package
+
+
+```r
+&gt; usethis::use_data_raw()
+#&gt; ✔ Creating 'data-raw/'
+#&gt; ✔ Adding '^data-raw$' to '.Rbuildignore'
+#&gt; Next:
+#&gt; ● Add data creation scripts 
+#&gt;    in 'data-raw/'
+#&gt; ● Use `usethis::use_data()` to 
+#&gt;    add data to package
+```
+]
+--
+.pull-right[
+- simulate dataset, and `use_data()` will save it with the package
+
+
+```r
+set.seed(8976) # remeber to set your seed!
+my_data &lt;-
+  tibble::tibble(
+    x = runif(100),
+    y = runif(100)
+  )
+
+usethis::use_data(my_data, overwrite = TRUE)
+#&gt; ✔ Creating 'data/'
+#&gt; ✔ Saving 'my_data' to 'data/my_data.rda'
+```
+
+- done! it's that easy!
+]
+
+---
+# Include Datasets
+
+.pull-left[
+- we do need to document the dataset, however
+
+- we use {roxygen2} comments again for documentation
+
+- add a file to the R folder to begin documenting
+  - I call mine `data.R`
+```
+&gt; usethis::use_r("data")
+● Modify 'R/data.R'
+```
+
+
+]
+--
+.pull-right[
+`R/data.R`
+```
+#' My simulated data
+#'
+#' A simulated dataset that I am saving in my package.
+#'
+#' @format A data frame with 100 rows
+#' \describe{
+#'     \item{x}{Random Uniform Variable}
+#'     \item{y}{Random Uniform Variable}
+#' }
+"my_data"
+```
+- after you write the {roxygen2} comments, document the package
+
+- the help file will be accessible with `?my_data` after the package has been loaded
+]
+
+---
+class: inverse
+# Outline
+.xlarge[
+.pull-left[
+- R Package Structure
+
+- Getting Started
+
+- Adding Functions
+
+- Build your Package
+
+- Unit Tests
+
+- Advanced Setup
+]
+.pull-right[
+- Advanced Documentation
+
+- Include Datasets
+
+- _**Other Tips**_
+
+- Non-Standard Evaluation 
+
+- Collaborate with GitHub
+
+- Create Package Website
+]
+]
+
+---
+# Other Tips
+
+- {roxygen2} tags `@import` and `@importFrom`
+
+- `use_pipe()` to import and export {magrittr} pipe operator
+
+- helper functions for tidy development
+
+---
+# Other Tips: Import
+
+- there are a few functions from the tidyverse we use frequently
+
+- referring to them with `::` quickly becomes cumbersome
+
+- we can import functions and even entire packages to avoid the `::` notation
+
+- {roxygen2} tags `@import` and `@importFrom`
+
+---
+# Other Tips: Import
+.pull-left[
+- remember that boring package-level documentation file we made with `use_package_doc()`? let's use this file to import commonly used functions
+
+```
+#' @import dplyr
+#' @import purrr
+#' @importFrom tidyr nest unnest 
+     spread gather complete
+#' @importFrom tibble tibble as_tibble
+#' @importFrom rlang .data %||% set_names sym 
+     expr enexpr quo enquo parse_expr
+#' @importFrom glue glue
+#' @keywords internal
+"_PACKAGE"
+
+# allowing for the use of the dot when piping
+utils::globalVariables(".")
+```
+]
+.pull-right[
+- when adding entire package imports, be sure to run the package checks. you may experience warnings from conflicting function names 
+  - this is common with tidyverse packages as many of them contain the same functions
+  
+- `@import` and `@importFrom` can be placed in any R code file
+  - can import same function in multiple files. {roxygen2} will sort out duplicates when the package is documented
+
+- use the package-level documentation file for imports that apply to all functions in your package
+]
+???
+mention that generally it's best practice to use `::` notation.  but readability of your code is more important and if importing functions improves readability then do it.
+
+also discuss the global variables issue and why the last line is included
+
+---
+# Other Tips: the pipe
+
+.pull-left[
+- the {magrittr} pipe operator is so useful, you may want to both import and export it to make it available to users of your package
+
+```
+&gt; usethis::use_pipe()
+✔ Adding 'magrittr' to Imports 
+    field in DESCRIPTION
+✔ Writing 'R/utils-pipe.R'
+● Run `devtools::document()`
+```
+]
+.pull-right[
+`R/utils-pipe.R`
+```
+#' Pipe operator
+#'
+#' See \code{magrittr::\link[magrittr]{\%&gt;\%}} 
+#' for details.
+#'
+#' @name %&gt;%
+#' @rdname pipe
+#' @keywords internal
+#' @export
+#' @importFrom magrittr %&gt;%
+#' @usage lhs \%&gt;\% rhs
+NULL
+```
+]
+
+---
+# Other Tips: tidy helpers
+
+the {usethis} package contains helper functions to develop tidy packages
+
+these are my favorites
+
+- `use_tidy_description()`
+  - puts fields in standard order and alphabetises dependencies in DESCRIPTION file
+
+- `use_tidy_versions(overwrite = FALSE)`
+  - pins all dependencies to require at least the currently installed version
+  - helps ensure your package will work on all systems
+
+- `use_tidy_style(strict = TRUE)`
+  - uses the {styler} package to style all code according to the tidyverse style guide
+  - keeps your code easy to read, looking good, and collaborative
+
+
+---
+class: inverse
+# Outline
+.xlarge[
+.pull-left[
+- R Package Structure
+
+- Getting Started
+
+- Adding Functions
+
+- Build your Package
+
+- Unit Tests
+
+- Advanced Setup
+]
+.pull-right[
+- Advanced Documentation
+
+- Include Datasets
+
+- Other Tips
+
+- _**Non-Standard Evaluation**_ 
+
+- Collaborate with GitHub
+
+- Create Package Website
+]
+]
+
+---
+# Non-Standard Evaluation
+
+- tidyverse code is quick to write, but as a result it is ambiguous
+  - these equivelent `mutate` statements return different results
+  - the code in your package must be precise
+  
+.pull-left[
+
+```r
+y = 10
+tibble(
+  x = 1:4
+) %&gt;%
+* mutate(
+*   xy = x + y
+* )
+```
+
+```
+## # A tibble: 4 x 2
+##       x    xy
+##   &lt;int&gt; &lt;dbl&gt;
+## 1     1    11
+## 2     2    12
+## 3     3    13
+## 4     4    14
+```
+]
+.pull-right[
+
+```r
+tibble(
+  y = 4:1,
+  x = 1:4
+) %&gt;%
+* mutate(
+*   xy = x + y
+* )
+```
+
+```
+## # A tibble: 4 x 3
+##       y     x    xy
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
+## 1     4     1     5
+## 2     3     2     5
+## 3     2     3     5
+## 4     1     4     5
+```
+]
+
+---
+# Non-Standard Evaluation
+
+- how to make the code precise?
+ - import the `.data` function from {rlang}
+ - use `.data$&lt;varname&gt;` EVERY time you reference a column within a `mutate` statement
+ - if you don't use `.data`, the package check will return a warning
+
+.pull-left[
+
+```r
+y = 10
+tibble(
+  x = 1:4
+) %&gt;%
+* mutate(
+*   xy = .data$x + y
+* )
+```
+
+```
+## # A tibble: 4 x 2
+##       x    xy
+##   &lt;int&gt; &lt;dbl&gt;
+## 1     1    11
+## 2     2    12
+## 3     3    13
+## 4     4    14
+```
+]
+.pull-right[
+
+```r
+tibble(
+  y = 4:1,
+  x = 1:4
+) %&gt;%
+* mutate(
+*   xy = .data$x + .data$y
+* )
+```
+
+```
+## # A tibble: 4 x 3
+##       y     x    xy
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
+## 1     4     1     5
+## 2     3     2     5
+## 3     2     3     5
+## 4     1     4     5
+```
+]
+
+---
+# Non-Standard Evaluation
+
+- other tidyverse functions take bare column names as inputs
+  - e.g. `mtcars %&gt;% select(mpg, hp)`
+  - the reference to the `mpg` and `hp` columns is not standard, and the package check will return warnings if this code is found
+- many tidyverse functions will allow you to simply replace the bare references with quoted strings
+
+.pull-left[
+
+```r
+mtcars %&gt;% select(mpg, hp)
+
+mtcars %&gt;% pull(mpg)
+
+mtcars %&gt;% group_by(cyl) %&gt;% 
+  nest(mpg, hp)
+```
+]
+.pull-right[
+
+```r
+mtcars %&gt;% select(c("mpg", "hp"))
+
+mtcars %&gt;% pull("mpg")
+
+mtcars %&gt;% group_by(cyl) %&gt;% 
+  nest(c("mpg", "hp"))
+```
+]
+
+
+???
+group_by is NOT one of these functions!
+
+---
+# Non-Standard Evaluation
+
+- for functions that do not allow you to simply add a string, use `!!` and `rlang::sym()`
+- when you have multiple variables, use `!!!` and `rlang::syms()` instead of `!!` and `rlang::sym()` 
+
+.pull-left[
+
+```r
+mtcars %&gt;% group_by(cyl)
+
+
+mtcars %&gt;% group_by(cyl, am)
+```
+]
+.pull-right[
+
+```r
+mtcars %&gt;% group_by(!!sym("cyl"))
+mtcars %&gt;% group_by(.data$cyl)
+
+by_vars &lt;- c("cyl", "am")
+mtcars %&gt;% group_by(!!!syms(by_vars))
+mtcars %&gt;% group_by(.data$cyl, .data$am)
+```
+]
+
+---
+# Non-Standard Evaluation
+
+- entire expressions can be stored as string and evaluated 
+
+- this is particularly powerful when combined with the {glue} package
+
+.pull-left[
+
+```r
+mtcars %&gt;% filter(cyl == 4)
+```
+]
+.pull-right[
+
+```r
+mtcars %&gt;% filter(!!parse_expr("cyl == 4"))
+mtcars %&gt;% filter(.data$cyl == 4)
+```
+]
+
+- can also created functions with NSE inputs
+
+- briefly, you replace `sym()` with `enquo()`, more on that in the additional reading
+
+- additional resources
+  - *Programming with dplyr* https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html
+  - *Tidy evaluation, most common actions* https://edwinth.github.io/blog/dplyr-recipes/
+      - this resource is excellent!
+
+---
+class: inverse
+# Outline
+.xlarge[
+.pull-left[
+- R Package Structure
+
+- Getting Started
+
+- Adding Functions
+
+- Build your Package
+
+- Unit Tests
+
+- Advanced Setup
+]
+.pull-right[
+- Advanced Documentation
+
+- Include Datasets
+
+- Other Tips
+
+- Non-Standard Evaluation 
+
+- _**Collaborate with GitHub**_
+
+- Create Package Website
+]
+]
+
+---
+# Collaborate with GitHub
+
+- create a development branch (e.g. *dev*) and do 100% of your initial package building directly on this branch
+
+- once package is standing on its own legs (not necessarily done), make all updates via forks or feature branches
+
+- protect your *master* and *dev* branches
+  - from the GitHub repo, select *Settings*, select *Branches*, and add rules for each branch
+  - for the *dev* and  *master* branches, I recommend 
+      - "Require pull request reviews before merging" 
+      - "Require status checks to pass before merging" 
+      - "Include administrators"
+
+---
+class: inverse
+# Outline
+.xlarge[
+.pull-left[
+- R Package Structure
+
+- Getting Started
+
+- Adding Functions
+
+- Build your Package
+
+- Unit Tests
+
+- Advanced Setup
+]
+.pull-right[
+- Advanced Documentation
+
+- Include Datasets
+
+- Other Tips
+
+- Non-Standard Evaluation 
+
+- Collaborate with GitHub
+
+- _**Create Package Website**_
+]
+]
+
+---
+# Create Package Website
+
+- lastly, it's easy to create a website for your pacakge
+
+- from the GitHub repo, select *Settings*, scroll down to *GitHub Pages*, from the *Source* menu select *master branch/docs folder*
+
+- the location of the published site is listed under *GitHub Pages*
+
+- run `pkgdown::build_site()`
+
+- done! can take a few minutes to be available online
+
+- more details at https://pkgdown.r-lib.org/
+
+---
+# Resources
+
+.pull-left[
+- {roxygen2}
+  - http://kbroman.org/pkg_primer/pages/docs.html
+  - https://blog.rstudio.com/2017/02/01/roxygen2-6-0-0/
+
+- continuous integration
+  - https://juliasilge.com/blog/beginners-guide-to-travis/
+  - http://travis-ci.org
+  - https://www.appveyor.com/
+  - https://codecov.io/
+  
+- *R Packages*, by Hadley Wickham
+  - touches on most of the topics covered here (package structures, unit tests, documentation)
+  - does not include {usethis} setup
+  - http://r-pkgs.had.co.nz/
+]
+.pull-right[
+&lt;img src="images/R Packages cover.png" width="80%"&gt;
+]
+
+---
+class: center, middle
+# Thank you
+
+&lt;img src = "images/slide_show_icon.png" width="2.4%" height="2.4%"&gt; slides at &lt;a href="http://www.danieldsjoberg.com/writing-R-packages"&gt;danieldsjoberg.com/writing-R-packages&lt;/a&gt;  
+&lt;img src = "images/github_icon.png" width="2.4%" height="2.4%"&gt; source code at &lt;a href="https://github.com/ddsjoberg/writing-R-packages"&gt;github.com/ddsjoberg/writing-R-packages&lt;/a&gt;
     </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "ratio": "16:9",
@@ -1003,12 +1767,53 @@ class: inverse
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
-(function() {
-  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
   if (!r) return;
   s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
   d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
 })();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
 
 <script>
 (function() {
