@@ -3,3 +3,8 @@
 .large { font-size: 130% }
 .small { font-size: 70% }
 .tiny { font-size: 40% }
+
+a, a > code {
+  color: #000000; /*default: rgb(249, 38, 114); || sets color of links */
+  text-decoration: none; /* turns off background coloring of links */
+}

@@ -33,6 +33,8 @@ class: center, middle
 ]]
 
 ---
+background-image: url(images/hex_stickers_blurred3.png)
+background-size: contain
 # Outline
 .xlarge[
 .pull-left[
@@ -212,7 +214,7 @@ An R package needs 3 components
 The {usethis} package has functions that create the package structure for you
 
 After any function in {usethis} is run, it prints additional information into the console
-- lists file created
+- lists files created
 - lists files modified
 - lists user instructions
 
@@ -1675,17 +1677,17 @@ class: inverse
 - {roxygen2}
   - http://kbroman.org/pkg_primer/pages/docs.html
   - https://blog.rstudio.com/2017/02/01/roxygen2-6-0-0/
-
+  
 - continuous integration
   - https://juliasilge.com/blog/beginners-guide-to-travis/
-  - http://travis-ci.org
-  - https://www.appveyor.com/
-  - https://codecov.io/
-  
+
 - *R Packages*, by Hadley Wickham
   - touches on most of the topics covered here (package structures, unit tests, documentation)
   - does not include {usethis} setup
   - http://r-pkgs.had.co.nz/
+  
+- Git and GitHub
+  - https://happygitwithr.com/
 ]
 .pull-right[
 <img src="images/R Packages cover.png" width="80%">
@@ -1693,6 +1695,9 @@ class: inverse
 
 ---
 class: center, middle
+background-image: url(images/hex_stickers_blurred3.png)
+background-size: contain
+
 # Thank you
 
 <img src = "images/slide_show_icon.png" width="2.4%" height="2.4%"> slides at <a href="http://www.danieldsjoberg.com/writing-R-packages">danieldsjoberg.com/writing-R-packages</a>  
