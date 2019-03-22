@@ -607,11 +607,11 @@ my_mean &lt;- function(x) {
 .pull-left[
 * new function calculates mean of every column in a data frame
 
-* use the `map()` function in the purrr package
+* use the `map()` function in the {purrr} package
 
 * we need to use `::` to refer to the `map()` function: `purrr::map()`
 
-* we also need to document that our package now depends on purrr
+* we also need to document that our package now depends on {purrr}
 
 * `usethis::use_package("purrr")`
 
@@ -756,7 +756,7 @@ class: inverse
 
 * helps ensure future updates don't break functioning code
 
-* easily implemented with the testthat package
+* easily implemented with the {testthat} package
 
 * all unit tests are run each time the package is checked
 
@@ -891,7 +891,7 @@ Specify the license you want associated with your package.
 .pull-right[
 - creates a basic `NEWS.md` in the root directory
 
-- keep track of updates and versioning
+- keep track of updates and versions
 
 - communicate changes to API to users (also future you)
 
@@ -918,7 +918,7 @@ Specify the license you want associated with your package.
 .pull-right[
 - adds a unit test to automatically run a spell check on documentation and vignettes
 
-- adds a WORDLIST file to the package, which is a dictionary of whitelisted words
+- adds a WORDLIST file to the package, which is a dictionary of white-listed words
 
 - runs when the package checks are run
 
@@ -953,7 +953,7 @@ Updated ~/myPackage/tests/spelling.R
 
 - `use_appveyor()` test build on Windows: https://www.appveyor.com/
 
-- tests are trggered each time package is pushed to GitHub
+- tests are triggered each time package is pushed to GitHub
 
 - blog post about using CI https://juliasilge.com/blog/beginners-guide-to-travis/
 
@@ -1395,7 +1395,7 @@ the {usethis} package contains helper functions to develop tidy packages
 these are my favorites
 
 - `use_tidy_description()`
-  - puts fields in standard order and alphabetises dependencies in DESCRIPTION file
+  - puts fields in standard order and alphabetizes dependencies in DESCRIPTION file
 
 - `use_tidy_versions(overwrite = FALSE)`
   - pins all dependencies to require at least the currently installed version
@@ -1442,7 +1442,7 @@ class: inverse
 # Non-Standard Evaluation
 
 - tidyverse code is quick to write, but as a result it is ambiguous
-  - these equivelent `mutate` statements return different results
+  - these equivalent `mutate` statements return different results
   - the code in your package must be precise
   
 .pull-left[
@@ -1716,7 +1716,7 @@ class: inverse
 ---
 # Create Package Website
 
-- lastly, it's easy to create a website for your pacakge
+- lastly, it's easy to create a website for your package
 
 - from the GitHub repo, select *Settings*, scroll down to *GitHub Pages*, from the *Source* menu select *master branch/docs folder*
 
