@@ -1660,6 +1660,8 @@ class: inverse
 
 - lastly, it's easy to create a website for your package
 
+- easier for a user to navigate, find functions, and 
+
 - from the GitHub repo, select *Settings*, scroll down to *GitHub Pages*, from the *Source* menu select *master branch/docs folder*
 
 - the location of the published site is listed under *GitHub Pages*
