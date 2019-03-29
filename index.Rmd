@@ -1004,6 +1004,8 @@ Copying code to clipboard:
 - continuous integration
 
 - _**`usethis::use_coverage()`**_
+
+<img src="images/codecov figure 3.png" width = "25%">
 ]
 .pull-right[
 - more cool badges
@@ -1018,7 +1020,6 @@ Copying code to clipboard:
 
 <img src="images/codecov badge.svg" width = "50%">
 ]
-<img src="images/codecov figure 3.png" width = "25%">
 
 ---
 # Advanced Setup
