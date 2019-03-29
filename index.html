@@ -596,11 +596,9 @@ my_mean &lt;- function(x) {
 # Adding Functions: Rstudio Build Tab
 
 &lt;img src="images/build tab.PNG"&gt;
-* **Document** each time you update roxygen comments
-* **Install and Restart** each time you update R code
-* **Check** 
-  - runs many many check on your package
-  - check your package often as you build
+
+**Document** each time you update roxygen comments
+
   
 ---
 # Adding Functions
@@ -611,7 +609,7 @@ my_mean &lt;- function(x) {
 
 * we need to use `::` to refer to the `map()` function: `purrr::map()`
 
-* we also need to document that our package now depends on {purrr}
+* we need to document that our package now depends on {purrr}
 
 * `usethis::use_package("purrr")`
 
@@ -848,22 +846,22 @@ class: inverse
 .pull-left[
 - _**software license**_
 
-- `use_news_md()`
+- `usethis::use_news_md()`
 
-- `use_spell_check()`
+- `usethis::use_spell_check()`
 
 - continuous integration
 
-- `use_coverage()`
+- `usethis::use_coverage()`
 ]
 .pull-right[
 Specify the license you want associated with your package.
 
-- `use_mit_license()`
-- `use_gpl3_license()`
-- `use_lgpl_license()`
-- `use_apl2_license()`
-- `use_cc0_license()`
+- `usethis::use_mit_license()`
+- `usethis::use_gpl3_license()`
+- `usethis::use_lgpl_license()`
+- `usethis::use_apl2_license()`
+- `usethis::use_cc0_license()`
 
 ```
 &gt; usethis::use_mit_license("Daniel D. Sjoberg")
@@ -880,13 +878,13 @@ Specify the license you want associated with your package.
 .pull-left[
 - software license
 
-- _**`use_news_md()`**_
+- _**`usethis::use_news_md()`**_
 
-- `use_spell_check()`
+- `usethis::use_spell_check()`
 
 - continuous integration
 
-- `use_coverage()`
+- `usethis::use_coverage()`
 ]
 .pull-right[
 - creates a basic `NEWS.md` in the root directory
@@ -907,13 +905,13 @@ Specify the license you want associated with your package.
 .pull-left[
 - software license
 
-- `use_news_md()`
+- `usethis::use_news_md()`
 
-- _**`use_spell_check()`**_
+- _**`usethis::use_spell_check()`**_
 
 - continuous integration
 
-- `use_coverage()`
+- `usethis::use_coverage()`
 ]
 .pull-right[
 - adds a unit test to automatically run a spell check on documentation and vignettes
@@ -936,45 +934,44 @@ Updated ~/myPackage/tests/spelling.R
 .pull-left[
 - software license
 
-- `use_news_md()`
+- `usethis::use_news_md()`
 
-- `use_spell_check()`
+- `usethis::use_spell_check()`
 
 - _**continuous integration**_
 
-- `use_coverage()`
+- `usethis::use_coverage()`
 ]
 .pull-right[
 - get cool badges
 
 - others more confident in your package
 
-- `use_travis()` tests build on Linux: http://travis-ci.org
+- `usethis::use_travis()` tests build on Linux: http://travis-ci.org
 
-- `use_appveyor()` test build on Windows: https://www.appveyor.com/
+- `usethis::use_appveyor()` tests build on Windows: https://www.appveyor.com/
 
 - tests are triggered each time package is pushed to GitHub
 
 - blog post about using CI https://juliasilge.com/blog/beginners-guide-to-travis/
 
 - requires public GitHub repo
-
-&lt;img src="images/travis badge.svg"&gt;
-&lt;img src="images/appveyor badge.svg"&gt;
 ]
+&lt;img src="images/travis badge.svg" width = "21%"&gt;
+&lt;img src="images/appveyor badge.svg" width = "24.7%"&gt;
 
 ---
 # Advanced Setup
 .pull-left[
 - software license
 
-- `use_news_md()`
+- `usethis::use_news_md()`
 
-- `use_spell_check()`
+- `usethis::use_spell_check()`
 
 - _**continuous integration**_
 
-- `use_coverage()`
+- `usethis::use_coverage()`
 ]
 .pull-right[
 Be sure to follow all directions!
@@ -1006,13 +1003,13 @@ Copying code to clipboard:
 .pull-left[
 - software license
 
-- `use_news_md()`
+- `usethis::use_news_md()`
 
-- `use_spell_check()`
+- `usethis::use_spell_check()`
 
 - continuous integration
 
-- _**`use_coverage()`**_
+- _**`usethis::use_coverage()`**_
 ]
 .pull-right[
 - more cool badges
@@ -1025,22 +1022,22 @@ Copying code to clipboard:
 
 - https://codecov.io/
 
-&lt;img src="images/codecov badge.svg"&gt;
+&lt;img src="images/codecov badge.svg" width = "50%"&gt;
 ]
-&lt;img src="images/codecov figure.png" width = "30%"&gt;
+&lt;img src="images/codecov figure 3.png" width = "25%"&gt;
 
 ---
 # Advanced Setup
 .pull-left[
 - software license
 
-- `use_news_md()`
+- `usethis::use_news_md()`
 
-- `use_spell_check()`
+- `usethis::use_spell_check()`
 
 - continuous integration
 
-- _**`use_coverage()`**_
+- _**`usethis::use_coverage()`**_
 ]
 .pull-right[
 {usethis} prints directions into the console...be sure to follow them! 
@@ -1052,13 +1049,14 @@ Copying code to clipboard:
 ● Add a Coverage status badge by adding the 
     following line to your README:
 Copying code to clipboard:
-  [![Coverage status](https://codecov.io/gh/ddsjoberg/myPackage/branch/master/graph/badge.svg)](https://codecov.io/github/ddsjoberg/myPackage?branch=master)
+  \[\!\[Coverage status\](https://codecov.io/gh/ddsjoberg/myPackage/branch/master/graph/badge.svg)\](https://codecov.io/github/ddsjoberg/myPackage?branch=master)
 ● Add to '.travis.yml':
 Copying code to clipboard:
   after_success:
-    - Rscript -e 'covr::codecov()'
+    \- Rscript -e 'covr::codecov()'
 ```
 ]
+&lt;img src="images/codecov figure 2.png" width = "25%"&gt;
 
 ---
 class: inverse
@@ -1100,7 +1098,7 @@ class: inverse
 
 - rather than use a basic README.md, use an R markdown README.rmd
 
-- `use_readme_rmd()`
+- `usethis::use_readme_rmd()`
 ```
 &gt; usethis::use_readme_rmd()
 ✔ Writing 'README.Rmd'
@@ -1147,7 +1145,7 @@ class: inverse
 ```
 title: "Vignette Title"
 author: "Vignette Author"
-date: "2019-03-22"
+date: "2019-03-28"
 output: rmarkdown::html_vignette
 vignette: &gt;
   %\VignetteIndexEntry{Vignette Title}
@@ -1240,7 +1238,8 @@ usethis::use_data(my_data, overwrite = TRUE)
 - we use {roxygen2} comments again for documentation
 
 - add a file to the R folder to begin documenting
-  - I call mine `data.R`
+
+- I call mine `data.R`
 ```
 &gt; usethis::use_r("data")
 ● Modify 'R/data.R'
@@ -1626,13 +1625,16 @@ mtcars %&gt;% filter(.data$cyl == 4)
 ```
 ]
 
-- can also created functions with NSE inputs
+- can also create functions with NSE inputs
 
 - briefly, you replace `sym()` with `enquo()`, more on that in the additional reading
 
 - additional resources
-  - *Programming with dplyr* https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html
-  - *Tidy evaluation, most common actions* https://edwinth.github.io/blog/dplyr-recipes/
+  - *Programming with dplyr*  
+  https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html
+  
+  - *Tidy evaluation, most common actions*  
+  https://edwinth.github.io/blog/dplyr-recipes/
       - this resource is excellent!
 
 ---
@@ -1676,9 +1678,13 @@ class: inverse
 
 - protect your *master* and *dev* branches
   - from the GitHub repo, select *Settings*, select *Branches*, and add rules for each branch
+  
   - for the *dev* and  *master* branches, I recommend 
+  
       - "Require pull request reviews before merging" 
+      
       - "Require status checks to pass before merging" 
+      
       - "Include administrators"
 
 ---
@@ -1717,6 +1723,8 @@ class: inverse
 # Create Package Website
 
 - lastly, it's easy to create a website for your package
+
+- easier for a user to navigate, find functions, and 
 
 - from the GitHub repo, select *Settings*, scroll down to *GitHub Pages*, from the *Source* menu select *master branch/docs folder*
 
@@ -1761,7 +1769,6 @@ background-size: contain
 &lt;img src = "images/slide_show_icon.png" width="2.4%" height="2.4%"&gt; slides at &lt;a href="http://www.danieldsjoberg.com/writing-R-packages"&gt;danieldsjoberg.com/writing-R-packages&lt;/a&gt;  
 &lt;img src = "images/github_icon.png" width="2.4%" height="2.4%"&gt; source code at &lt;a href="https://github.com/ddsjoberg/writing-R-packages"&gt;github.com/ddsjoberg/writing-R-packages&lt;/a&gt;
     </textarea>
-<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "ratio": "16:9",
@@ -1772,53 +1779,12 @@ background-size: contain
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
-(function(d) {
-  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
   if (!r) return;
   s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
   d.head.appendChild(s);
-})(document);
-
-(function(d) {
-  var el = d.getElementsByClassName("remark-slides-area");
-  if (!el) return;
-  var slide, slides = slideshow.getSlides(), els = el[0].children;
-  for (var i = 1; i < slides.length; i++) {
-    slide = slides[i];
-    if (slide.properties.continued === "true" || slide.properties.count === "false") {
-      els[i - 1].className += ' has-continuation';
-    }
-  }
-  var s = d.createElement("style");
-  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
-  d.head.appendChild(s);
-})(document);
-// delete the temporary CSS (for displaying all slides initially) when the user
-// starts to view slides
-(function() {
-  var deleted = false;
-  slideshow.on('beforeShowSlide', function(slide) {
-    if (deleted) return;
-    var sheets = document.styleSheets, node;
-    for (var i = 0; i < sheets.length; i++) {
-      node = sheets[i].ownerNode;
-      if (node.dataset["target"] !== "print-only") continue;
-      node.parentNode.removeChild(node);
-    }
-    deleted = true;
-  });
 })();</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 (function() {
