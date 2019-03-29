@@ -1005,7 +1005,7 @@ Copying code to clipboard:
 
 - _**`usethis::use_coverage()`**_
 
-<img src="images/codecov figure 3.png" width = "25%">
+<img src="images/codecov_figure_3.png" width = "25%">
 ]
 .pull-right[
 - more cool badges
