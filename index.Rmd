@@ -561,8 +561,9 @@ my_mean <- function(x) {
   - function in the same package `\code{\link{my_mean}}`
   - function in another package `\code{\link[base]{mean}}`
 
-* Blog post with more details
-  - http://kbroman.org/pkg_primer/pages/docs.html
+* additional resources
+  - *Rd* vignette in {roxygen2} package
+  - Blog post http://kbroman.org/pkg_primer/pages/docs.html
 
 ---
 # Adding Functions: Documentation
@@ -1697,11 +1698,12 @@ class: inverse
 
 .pull-left[
 - {roxygen2}
-  - http://kbroman.org/pkg_primer/pages/docs.html
-  - https://blog.rstudio.com/2017/02/01/roxygen2-6-0-0/
+  - *Rd* vignette in {roxygen2} package
+  - Broman Blog https://tinyurl.com/yxj2vzkn
+  - RStudio Blog https://tinyurl.com/yyrvysoy
   
 - continuous integration
-  - https://juliasilge.com/blog/beginners-guide-to-travis/
+  - Silge Blog https://tinyurl.com/y2b6pxne
 
 - *R Packages*, by Hadley Wickham
   - touches on most of the topics covered here (package structures, unit tests, documentation)
@@ -1723,4 +1725,6 @@ background-size: contain
 # Thank you
 
 <img src = "images/slide_show_icon.png" width="2.4%" height="2.4%"> slides at <a href="http://www.danieldsjoberg.com/writing-R-packages">danieldsjoberg.com/writing-R-packages</a>  
-<img src = "images/github_icon.png" width="2.4%" height="2.4%"> source code and sample package code at <a href="https://github.com/ddsjoberg/writing-R-packages">github.com/ddsjoberg/writing-R-packages</a>
+<img src = "images/github_icon.png" width="2.4%" height="2.4%"> source code* at <a href="https://github.com/ddsjoberg/writing-R-packages">github.com/ddsjoberg/writing-R-packages</a>
+
+.footnote[.small[\* has the code for the package we built here]]
